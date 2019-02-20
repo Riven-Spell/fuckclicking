@@ -29,9 +29,17 @@ func (h *Handler) Execute(req Request, res *Response) (err error) {
 			spamming = true
 			go Spam()
 		}
+
 	case 2:
 		spamming = false
+
 	case 3:
+		spamming = !spamming
+		if spamming {
+			go Spam()
+		}
+
+	case 4:
 		os.Exit(0)
 	}
 

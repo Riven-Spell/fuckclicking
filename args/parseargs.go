@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-var Op = 0 //1 = start 2 = stop
+var Op = 0 //1 = start 2 = stop 3 = toggle 4 = shutdown
 var Delay = -1
 var Button = -1 // 0 = left, 1 = middle, 2 = right
 
@@ -23,8 +23,10 @@ func Parse() {
 			Op = 1
 		case "--stop":
 			Op = 2
-		case "--shutdown":
+		case "--toggle":
 			Op = 3
+		case "--shutdown":
+			Op = 4
 		case "--delay":
 			var err error
 			if Delay, err = strconv.Atoi(os.Args[k+1]); err != nil {
@@ -39,6 +41,7 @@ func Parse() {
 			}
 		case "--help":
 			fmt.Println("--start | --stop - start or stop clicking")
+			fmt.Println("--toggle - toggle clicking")
 			fmt.Println("--shutdown - kill the server")
 			fmt.Println("--delay <delay> - the delay (in ms) between every click")
 			fmt.Println("--button <0|1|2> - left, middle, right. Which button to spam?")
