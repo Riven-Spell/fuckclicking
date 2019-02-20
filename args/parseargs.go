@@ -40,7 +40,8 @@ func Parse() {
 		case "--help":
 			fmt.Println("--start | --stop - start or stop clicking")
 			fmt.Println("--shutdown - kill the server")
-			fmt.Println("--delay")
+			fmt.Println("--delay <delay> - the delay (in ms) between every click")
+			fmt.Println("--button <0|1|2> - left, middle, right. Which button to spam?")
 			os.Exit(0)
 		}
 	}
