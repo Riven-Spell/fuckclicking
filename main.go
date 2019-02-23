@@ -84,7 +84,7 @@ func main() {
 			spamming = true
 			go Spam()
 		} else if args.Op == 3 {
-			os.Exit(0)
+			return
 		}
 
 		delay = time.Millisecond * time.Duration(args.Delay)
