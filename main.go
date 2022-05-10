@@ -15,12 +15,12 @@ var spamming = false
 var delay = time.Millisecond * 25 //ms
 
 type Request struct {
-	Op int
-	Delay int
+	Op     int
+	Delay  int
 	Button int
 }
-type Response struct {}
-type Handler struct {}
+type Response struct{}
+type Handler struct{}
 
 func (h *Handler) Execute(req Request, res *Response) (err error) {
 	switch req.Op {
@@ -67,7 +67,7 @@ func main() {
 
 		_ = rpc.Register(&Handler{})
 		var listener net.Listener
-		if listener, err = net.Listen("tcp","127.0.0.1:2938"); err != nil {
+		if listener, err = net.Listen("tcp", "127.0.0.1:2938"); err != nil {
 			fmt.Println(err.Error())
 			return
 		}
@@ -80,11 +80,9 @@ func main() {
 			args.Delay = 25
 		}
 
-		if args.Op == 1 {
+		if args.Op == 1 || args.Op == 3 {
 			spamming = true
 			go Spam()
-		} else if args.Op == 3 {
-			return
 		}
 
 		delay = time.Millisecond * time.Duration(args.Delay)
